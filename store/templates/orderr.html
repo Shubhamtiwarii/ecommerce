@@ -1,0 +1,65 @@
+{% include "base.html" %}
+{% load static %}
+
+{% block custom_css %}
+<link rel="stylesheet" href="{% static "css/order.css" %}">
+{% endblock custom_css %}
+
+    
+{% block cart %}
+<body>
+  <div class="container mt-5">
+    <div class="d-flex justify-content-center row">
+        <div class="col-md-10">
+            <div class="rounded">
+                <div class="table-responsive table-borderless">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                               
+                                <th>Order #</th>
+                                <th>Company name</th>
+                                <th>status</th>
+                                <th>Total</th>
+                                <th>Created</th>
+                                hlo
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-body">
+                          {% for order in order %}
+                            <tr class="cell-1"> 
+                              {% for cart_item in order.cart_item %}                  
+                                <td>{{cart_item.cart.cart_id}}</td>                                
+                                <td>{{cart_item.product.name}}</td>
+                                <td>${{cart_item.product.price}}</td>
+                                <td>Today</td>
+                                <td><i class="fa fa-ellipsis-h text-black-50"></i></td>
+                              {% endfor %}
+                              <td>
+                                {% if order.status == 0 %}
+                                    <span class="badge badge-dark">Pending</span>
+                                {% elif order.status == 1 %}
+                                    <span class="badge badge-info">Shipped</span>
+                                {% elif order.status == 2 %}
+                                    <span class="badge badge-success">Completed</span>
+                                {% elif order.status == 3 %}
+                                    <span class="badge badge-secondary">Return</span>
+                                {% endif %}
+                            </td>
+                          
+                               
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+{% endblock cart %}
+    
+    
